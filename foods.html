@@ -14,11 +14,11 @@
     <h1>Manage Foods</h1>
     <div id="create-form">
       <label id="name-field">Name
-        <input>
+        <input type="text" id="food-name" name="food-name" placeholder="Name of Food">
         <div class="validation-error"></div>
       </label>
       <label id="calories-field">Calories
-        <input>
+        <input type="integer" id="calorie-count" name="calorie-count" placeholder="How many Calories?">
         <div class="validation-error"></div>
       </label>
       <button id="add-food">Add Food</button>
@@ -32,9 +32,12 @@
       <thead>
         <tr><th>Name</th><th>Calories</th></tr>
       </thead>
-      <tbody>
-        <!-- SAMPLE ROW INSPIRATION FOR YOUR DOM MANIPULATION
-        <tr class="food-row">
+      <tbody id='food-table'>
+      <tr id="food-row">
+        
+      </tr>
+        <!-- SAMPLE ROW INSPIRATION FOR YOUR DOM MANIPULATION -->
+        <!-- <tr class="food-row">
           <td class="food-name">Banana</td>
           <td class="food-calories">35</td>
           <td class="food-delete"><button>-</button></td>
