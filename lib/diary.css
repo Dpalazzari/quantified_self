@@ -1,0 +1,39 @@
+.date-bar h2{
+  margin: auto;
+  display: inline-block;
+  background-color: #3C9CD4;
+  width: 38%;
+  color: white;
+  text-align: center;
+  margin-left: 10%;
+}
+.total-calories {
+  background-color: lightgrey;
+  font-weight: bold;
+  text-align: right;
+}
+.remaining-calories {
+  background-color: lightgrey;
+  font-weight: bold;
+  text-align: right;
+}
+.breakfast-lunch-tables{
+  width: 100%;
+/*  display: inline-block;*/
+}
+#left{
+  float: left;
+  margin-left: 10%;
+}
+#right{
+  float:right;
+  margin-right: 27%;
+}
+.button-total{
+  margin-top: 25%;
+  margin-left: 10%;
+}
+#left-buttons{
+  float: left;
+  margin-left: 0;
+}
