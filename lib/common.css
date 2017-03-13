@@ -49,3 +49,6 @@ input {
   font-weight:normal;
   margin-top:6px;
 }
+.table-header{
+  text-align: left;
+}

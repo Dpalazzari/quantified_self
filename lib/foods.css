@@ -32,3 +32,6 @@ td.food-delete {
 #create-form {
   text-align:right;
 }
+.food-calories{
+  text-align: right;
+}
