@@ -4,7 +4,7 @@
       src="https://code.jquery.com/jquery-3.1.1.js"
       integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
       crossorigin="anonymous"></script>
-    <script src="./lib/foods.js"></script>
+    <script src="./lib/diary.js"></script>
     <script src="./lib/common.js"></script>
     <link type="text/css" rel="stylesheet" href="./lib/foods.css" >
     <link type="text/css" rel="stylesheet" href="./lib/diary.css" >
@@ -23,7 +23,7 @@
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
           </thead>
           <tbody id='food-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>A number</td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>400</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
@@ -35,7 +35,7 @@
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
           </thead>
           <tbody id='food-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>A number</td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>600</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
@@ -49,7 +49,7 @@
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
           </thead>
           <tbody id='food-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>A number</td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>800</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
@@ -59,9 +59,13 @@
         <h2>Snacks</h2>
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+            <tr id='food-row'><td class='food-name'>Banana</td>
+            <td class='food-calories'>105</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
+            <tr id='food-row'><td class='food-name'>Pineapple</td>
+            <td class='food-calories'>205</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
           </thead>
           <tbody id='food-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>A number</td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='snacks-total'></td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
@@ -85,7 +89,7 @@
           <thead>
           </thead>
           <tbody id='food-table'>
-            <tr><td class='total-calories'>Goal Calories</td><td class='total-calories'>A number</td></tr>
+            <tr><td class='total-calories'>Goal Calories</td><td class='total-calories'>2000</td></tr>
             <tr><td class='remaining-calories'>Calories Consumed</td><td class='remaining-calories'>Another number</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
