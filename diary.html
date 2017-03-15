@@ -76,11 +76,11 @@
         <h2>Foods</h2>
         <button id="add-food">Create New</button>
         <p><strong>Add selected To</strong></p>
-        <button id="add-food">Breakfast</button>
-        <button id="add-food">Lunch</button>
-        <div>
-          <button id="add-food">Snacks</button>
-          <button id="add-food">Dinner</button>
+        <button id="add-breakfast">Breakfast</button>
+        <button id="add-lunch">Lunch</button>
+        <div class="snack-dinner-btns">
+          <button id="add-snacks">Snacks</button>
+          <button id="add-dinner">Dinner</button>
         </div>
       </div>
       <div id='right'>
@@ -97,9 +97,16 @@
       </div>
     </div>
     <div class='left-food-table'>
-      <table id="food-list">
+
+    <div id="food-filter">
+      <label>Search by Name
+        <input type="text" id="filter-food">
+      </label>
+    </div>
+
+      <table class='all-food-table' id="food-list">
         <thead>
-          <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+          <tr><th id='checkbox-header'></th><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
         </thead>
         <tbody id='food-table'>
  
