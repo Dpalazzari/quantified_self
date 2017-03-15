@@ -4,6 +4,7 @@
       src="https://code.jquery.com/jquery-3.1.1.js"
       integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
       crossorigin="anonymous"></script>
+    <script src="vendor/moment.js"></script>
     <script src="./lib/diary.js"></script>
     <script src="./lib/common.js"></script>
     <link type="text/css" rel="stylesheet" href="./lib/foods.css" >
@@ -14,9 +15,9 @@
     <h1>Main Diary</h1>
     <div class='date-bar'>
       <div class='current-day'>
-        <button id='back'></button>
+        <button id='back'>Back</button>
         <section></section>
-        <button id='forward'></button>
+        <button id='forward'>Forward</button>
       </div>
     </div>
     <div class='breakfast-lunch-tables'>
@@ -62,7 +63,7 @@
             <tr id='food-row'><td class='food-name'>Banana</td>
             <td class='food-calories'>300</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
             <tr id='food-row'><td class='food-name'>Pineapple</td>
-            <td class='food-calories'>555</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
+            <td class='food-calories'>1555</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
           </thead>
           <tbody id='dinner-table'>
             <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='total'></td></tr>
@@ -90,7 +91,7 @@
     <div class='button-total'>
       <div id='left-buttons'>
         <h2>Foods</h2>
-        <button id="add-food">Create New</button>
+        <a href="foods.html"><button id="add-food">Create New</button></a>
         <p><strong>Add selected To</strong></p>
         <button id="add-breakfast">Breakfast</button>
         <button id="add-lunch">Lunch</button>
