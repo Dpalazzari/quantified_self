@@ -1,4 +1,9 @@
 describe('#create-form', function() {
+  var $;
+
+  before(function(){
+    $ = document.getElementById('foods-frame').contentWindow.$;
+  })
 
   beforeEach(function() {
     //Clear out all the things
@@ -10,7 +15,7 @@ describe('#create-form', function() {
   context('validations', function() {
 
     it('will tell me if I fail to enter a name', function() {
-      $('#calories-field input').val('35');
+      $('#calories-field input').val('105');
       $('#add-food').click();
       var nameValidationContent = $("#name-field .validation-error").text();
       assert.equal(nameValidationContent, "Please Enter a Name");
@@ -25,7 +30,7 @@ describe('#create-form', function() {
 
     it('will be nice to me if I do everything correctly', function() {
       $('#name-field input').val('Banana');
-      $('#calories-field input').val('35');
+      $('#calories-field input').val('105');
       $('#add-food').click();
 
       var nameValidationContent = $("#name-field .validation-error").text();
@@ -36,4 +41,65 @@ describe('#create-form', function() {
     });
 
   });
+
+  context('deleting', function() {
+
+    it('with one food, it will delete the food row', function() {
+      $('#name-field input').val('Banana');
+      $('#calories-field input').val('105');
+      $('#add-food').click();
+      var foodData = "banana105-"
+      // "<tr id='food-row'><td class='food-name'>Banana</td><td class='food-calories'>105</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>"
+
+      var tableData = $("tbody").text();
+      assert.equal(tableData, foodData)
+
+      $('#delete-food').click();
+
+      var tableData = $("tbody").html();
+
+      assert.equal(tableData, "");
+    });
+
+    it('with many foods, it will delete the first food row', function() {
+      $('#name-field input').val('Banana');
+      $('#calories-field input').val('105');
+      $('#add-food').click();
+      $('#name-field input').val('Pineapple');
+      $('#calories-field input').val('452');
+      $('#add-food').click();
+
+       var foodData = "pineapple452-banana105-"
+      // "<tr id='food-row'><td class='food-name'>Banana</td><td class='food-calories'>105</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>"
+
+      var tableData = $("tbody").text();
+      assert.equal(tableData, foodData)
+
+      $('#delete-food').click();
+
+      var tableData = $("tbody").text();
+
+      assert.equal(tableData, "banana105-");
+    });
+  });
+
+  context('updating food name or calories', function(){
+    it('can change the name of a food when table row is clicked', function(){
+      $('#name-field input').val('Pizza Slice');
+      $('#calories-field input').val('325');
+      $('#add-food').click();
+      var foodData = "pizza slice325-"
+
+      var tableData = $("tbody").text();
+      assert.equal(tableData, foodData)
+
+      $('#food-row td#food-name').click();
+      $('input').val('');
+      $('input').val('chocolate cake')
+      $('h1').click();
+      var tableData = $("tbody").text();
+
+      assert.equal(tableData, "banana325-");
+    })
+  })
 });
