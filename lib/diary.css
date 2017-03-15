@@ -49,7 +49,6 @@ button.forward {
 }
 .breakfast-lunch-tables{
   width: 100%;
-/*  display: inline-block;*/
 }
 #left{
   float: left;
@@ -66,4 +65,21 @@ button.forward {
 #left-buttons{
   float: left;
   margin-left: 0;
+}
+.left-food-table{
+  float: left;
+  margin-top: 5%;
+  margin-right: 70%;
+  margin-left: 10%;
+  margin-bottom: 10%;
+}
+
+.snack-dinner-btns{
+  margin-top: 10px;
+}
+#checkbox-header{
+  background-color: white;
+  border-top: transparent;
+  border-left: transparent;
+  width: 20px;
 }

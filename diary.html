@@ -26,7 +26,7 @@
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
           </thead>
-          <tbody id='food-table'>
+          <tbody id='breakfast-table'>
             <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>400</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
@@ -38,7 +38,7 @@
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
           </thead>
-          <tbody id='food-table'>
+          <tbody id='lunch-table'>
             <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>600</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
@@ -52,7 +52,7 @@
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
           </thead>
-          <tbody id='food-table'>
+          <tbody id='dinner-table'>
             <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>800</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
@@ -68,7 +68,7 @@
             <tr id='food-row'><td class='food-name'>Pineapple</td>
             <td class='food-calories'>205</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
           </thead>
-          <tbody id='food-table'>
+          <tbody id='snack-table'>
             <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='snacks-total'></td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
@@ -80,11 +80,11 @@
         <h2>Foods</h2>
         <button id="add-food">Create New</button>
         <p><strong>Add selected To</strong></p>
-        <button id="add-food">Breakfast</button>
-        <button id="add-food">Lunch</button>
-        <div>
-          <button id="add-food">Snacks</button>
-          <button id="add-food">Dinner</button>
+        <button id="add-breakfast">Breakfast</button>
+        <button id="add-lunch">Lunch</button>
+        <div class="snack-dinner-btns">
+          <button id="add-snacks">Snacks</button>
+          <button id="add-dinner">Dinner</button>
         </div>
       </div>
       <div id='right'>
@@ -92,7 +92,7 @@
         <h2>Totals</h2>
           <thead>
           </thead>
-          <tbody id='food-table'>
+          <tbody id='total-table'>
             <tr><td class='total-calories'>Goal Calories</td><td class='total-calories'>2000</td></tr>
             <tr><td class='remaining-calories'>Calories Consumed</td><td class='remaining-calories'>Another number</td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
@@ -100,5 +100,25 @@
         </table>
       </div>
     </div>
+    <div class='left-food-table'>
+
+    <div id="food-filter">
+      <label>Search by Name
+        <input type="text" id="filter-food">
+      </label>
+    </div>
+
+      <table class='all-food-table' id="food-list">
+        <thead>
+          <tr><th id='checkbox-header'></th><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+        </thead>
+        <tbody id='food-table'>
+ 
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+    <br>
   </body>
 </html>
