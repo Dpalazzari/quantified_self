@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.js"
+      integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+      crossorigin="anonymous"></script>
+    <script src="vendor/moment.js"></script>
+    <script src="./lib/index.js"></script>
+    <script src="./lib/common.js"></script>
+    <link type="text/css" rel="stylesheet" href="./lib/foods.css" >
+    <link type="text/css" rel="stylesheet" href="./lib/index.css" >
+    <link type="text/css" rel="stylesheet" href="./lib/common.css" >
+  </head>
+  <body>
+    <h1>Main Diary</h1>
+    <div class='date-bar'>
+      <div class='current-day'>
+        <button id='back'>Back</button>
+        <section></section>
+        <button id='forward'>Forward</button>
+      </div>
+    </div>
+    <div class='breakfast-lunch-tables'>
+      <div id='left'>
+        <table id='food-list'>
+        <h2>Breakfast</h2>
+          <thead>
+            <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+          </thead>
+          <tbody id='breakfast-table'>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>400</td></tr>
+            <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div id='right'>
+        <table id='food-list'>
+        <h2>Lunch</h2>
+          <thead>
+            <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+          </thead>
+          <tbody id='lunch-table'>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>600</td></tr>
+            <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='breakfast-lunch-tables'>
+      <div id='left'>
+        <table id='food-list'>
+        <h2>Dinner</h2>
+          <thead>
+            <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+          </thead>
+          <tbody id='dinner-table'>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>800</td></tr>
+            <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div id='right'>
+        <table id='food-list'>
+        <h2>Snacks</h2>
+          <thead>
+            <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+            <tr id='food-row'><td class='food-name'>Banana</td>
+            <td class='food-calories'>105</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
+            <tr id='food-row'><td class='food-name'>Pineapple</td>
+            <td class='food-calories'>205</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
+          </thead>
+          <tbody id='snack-table'>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='snacks-total'></td></tr>
+            <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='button-total'>
+      <div id='left-buttons'>
+        <h2>Foods</h2>
+        <a href="foods.html"><button id="add-food">Create New</button></a>
+        <p><strong>Add selected To</strong></p>
+        <button id="add-breakfast">Breakfast</button>
+        <button id="add-lunch">Lunch</button>
+        <div class="snack-dinner-btns">
+          <button id="add-snacks">Snacks</button>
+          <button id="add-dinner">Dinner</button>
+        </div>
+      </div>
+      <div id='right'>
+        <table id='food-list'>
+        <h2>Totals</h2>
+          <thead>
+          </thead>
+          <tbody id='total-table'>
+            <tr><td class='total-calories'>Goal Calories</td><td class='total-calories'>2000</td></tr>
+            <tr><td class='remaining-calories'>Calories Consumed</td><td class='remaining-calories'>Another number</td></tr>
+            <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='left-food-table'>
+
+    <div id="food-filter">
+      <label>Search by Name
+        <input type="text" id="filter-food">
+      </label>
+    </div>
+
+      <table class='all-food-table' id="food-list">
+        <thead>
+          <tr><th id='checkbox-header'></th><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+        </thead>
+        <tbody id='food-table'>
+ 
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
