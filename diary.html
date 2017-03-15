@@ -17,25 +17,33 @@
     </div>
     <div class='breakfast-lunch-tables'>
       <div id='left'>
-        <table id='food-list'>
+        <table class='breakfast-table-header' id='food-list'>
         <h2>Breakfast</h2>
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+            <tr id='food-row'><td class='food-name'>Banana</td>
+            <td class='food-calories'>100</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
+            <tr id='food-row'><td class='food-name'>Pineapple</td>
+            <td class='food-calories'>55</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
           </thead>
           <tbody id='breakfast-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>400</td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='total'></td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
       </div>
       <div id='right'>
-        <table id='food-list'>
+        <table class='lunch-table-header' id='food-list'>
         <h2>Lunch</h2>
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+            <tr id='food-row'><td class='food-name'>Banana</td>
+            <td class='food-calories'>400</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
+            <tr id='food-row'><td class='food-name'>Pineapple</td>
+            <td class='food-calories'>155</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
           </thead>
           <tbody id='lunch-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>600</td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='total'></td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
@@ -43,19 +51,23 @@
     </div>
     <div class='breakfast-lunch-tables'>
       <div id='left'>
-        <table id='food-list'>
+        <table class='dinner-table-header' id='food-list'>
         <h2>Dinner</h2>
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
+            <tr id='food-row'><td class='food-name'>Banana</td>
+            <td class='food-calories'>300</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
+            <tr id='food-row'><td class='food-name'>Pineapple</td>
+            <td class='food-calories'>555</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
           </thead>
           <tbody id='dinner-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories'>800</td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='total'></td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
       </div>
       <div id='right'>
-        <table id='food-list'>
+        <table class='snack-table-header' id='food-list'>
         <h2>Snacks</h2>
           <thead>
             <tr><th class='table-header'>Name</th><th class='table-header'>Calories</th></tr>
@@ -65,7 +77,7 @@
             <td class='food-calories'>205</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>
           </thead>
           <tbody id='snack-table'>
-            <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='snacks-total'></td></tr>
+            <tr><td class='total-calories'>Total Calories</td><td class='total-calories' id='total'></td></tr>
             <tr><td class='remaining-calories'>Remaining Calories</td><td class='remaining-calories'>Another number</td></tr>
           </tbody>
         </table>
