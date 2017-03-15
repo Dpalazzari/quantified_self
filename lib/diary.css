@@ -85,3 +85,9 @@ button.forward {
   border-left: transparent;
   width: 20px;
 }
+.negative{
+  color: firebrick;
+}
+.positive{
+  color: #3EAE46;
+}
