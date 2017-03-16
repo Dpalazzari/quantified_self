@@ -3,7 +3,7 @@ describe('#create-form', function() {
 
   before(function(){
     $ = document.getElementById('foods-frame').contentWindow.$;
-  })
+  });
 
   beforeEach(function() {
     //Clear out all the things
@@ -39,7 +39,6 @@ describe('#create-form', function() {
       var caloriesValidationContent = $("#calories-field .validation-error").text();
       assert.equal(caloriesValidationContent, "");
     });
-
   });
 
   context('deleting', function() {
@@ -90,16 +89,36 @@ describe('#create-form', function() {
       $('#add-food').click();
       var foodData = "pizza slice325-"
 
-      var tableData = $("tbody").text();
+      var tableData = $('tbody').text();
       assert.equal(tableData, foodData)
 
       $('#food-row td#food-name').click();
-      $('input').val('');
       $('input').val('chocolate cake')
       $('h1').click();
-      var tableData = $("tbody").text();
+      var tableData = $('tbody').text();
 
-      assert.equal(tableData, "banana325-");
-    })
-  })
+      assert.equal(tableData, "chocolate cake325-");
+    });
+  });
+
+  context('foods added to localStorage persist', function(){
+    it('previously added foods will persist after page refresh', function(){
+      $('#name-field input').val('Pizza Slice');
+      $('#calories-field input').val('325');
+      $('#add-food').click();
+      $('#name-field input').val('Banana');
+      $('#calories-field input').val('105');
+      $('#add-food').click();
+      $('#name-field input').val('Pineapple');
+      $('#calories-field input').val('452');
+      $('#add-food').click();
+
+      var persistedFoods = localStorage.getItem('foods');
+
+      assert.isString(persistedFoods, 'localStorage is a string of values')
+      assert.include(persistedFoods, 'Pizza Slice', 'array contains value');
+      assert.include(persistedFoods, 'Banana', 'array contains value');
+      assert.include(persistedFoods, '452', 'array contains value');
+    });
+  });
 });
