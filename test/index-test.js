@@ -88,7 +88,7 @@ describe('#create-form', function() {
      assert.isFunction(calculateGrandTotal, 'this calculates the calories for a whole day')
      assert.isFunction(calculateRemainingCalories, 'this calculates remaining calories')
      assert.isFunction(displayDate, 'this displays the date')
-     assert.isFunction(getDay, 'this calculates the date')
+     assert.isFunction(displayFoods, 'this shows foods')
     });
   });
 });
