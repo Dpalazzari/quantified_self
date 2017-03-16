@@ -28,7 +28,7 @@ describe('#create-form', function() {
       assert.equal(caloriesValidationContent, "Please Enter Calories");
     });
 
-    it('will be nice to me if I do everything correctly', function() {
+    it('will be nice if all fields are filled in', function() {
       $('#name-field input').val('Banana');
       $('#calories-field input').val('105');
       $('#add-food').click();
@@ -41,7 +41,21 @@ describe('#create-form', function() {
     });
   });
 
-  context('deleting', function() {
+   context('adding foods to table', function() {
+
+    it('will add food', function() {
+      $('#name-field input').val('Taco');
+      $('#calories-field input').val('175');
+      $('#add-food').click();
+
+      var foodData = "taco175-"
+
+      var tableData = $("tbody").text();
+      assert.equal(tableData, foodData)
+    });
+  });
+
+  context('deleting foods from table', function() {
 
     it('with one food, it will delete the food row', function() {
       $('#name-field input').val('Banana');
@@ -82,7 +96,7 @@ describe('#create-form', function() {
     });
   });
 
-  context('updating food name or calories', function(){
+  context('editing food name or calories', function(){
     it('can change the name of a food when table row is clicked', function(){
       $('#name-field input').val('Pizza Slice');
       $('#calories-field input').val('325');
@@ -102,7 +116,7 @@ describe('#create-form', function() {
   });
 
   context('foods added to localStorage persist', function(){
-    it('previously added foods will persist after page refresh', function(){
+    it('previously added foods will be loaded into localStorage', function(){
       $('#name-field input').val('Pizza Slice');
       $('#calories-field input').val('325');
       $('#add-food').click();
