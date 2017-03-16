@@ -19,6 +19,17 @@ describe('#create-form', function() {
     });
   });
 
+  context('you can add foods to a meal table', function(){
+    it('can add checked food to meal table', function(){
+      var foodTable = $('#all-food-table');
+      var breakfastTable = $('#breakfast-table');
+      $('.all-food-table').find('#food-row input').click();
+      prependCheckedFood('button#add-breakfast', breakfastTable, 400);
+    
+      assert.include(breakfastTable, '');
+    });
+  });
+
   context('deleting foods from table', function() {
     xit('with one food, it will delete the food row', function() {
       $('#name-field input').val('Banana');
@@ -27,7 +38,7 @@ describe('#create-form', function() {
       var foodData = "banana105-"
 
       var tableData = $("tbody").text();
-      assert.equal(tableData, foodData)
+      assert.equal(tableData, foodData);
 
       $('#delete-food').click();
 
@@ -40,7 +51,7 @@ describe('#create-form', function() {
        var foodData = "pineapple452-banana105-"
 
       var tableData = $("tbody").text();
-      assert.equal(tableData, foodData)
+      assert.equal(tableData, foodData);
 
       $('#delete-food').click();
 
@@ -68,6 +79,8 @@ describe('#create-form', function() {
      assert.isFunction(calculateAllMealCalories, 'this calculates meal calories')
      assert.isFunction(calculateGrandTotal, 'this calculates the calories for a whole day')
      assert.isFunction(calculateRemainingCalories, 'this calculates remaining calories')
+     assert.isFunction(displayDate, 'this displays the date')
+     assert.isFunction(getDay, 'this calculates the date')
     });
   });
 });
