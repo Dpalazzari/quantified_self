@@ -20,13 +20,21 @@ describe('#create-form', function() {
   });
 
   context('you can add foods to a meal table', function(){
-    it('can add checked food to meal table', function(){
+    xit('can add checked food to meal table', function(){
       var foodTable = $('#all-food-table');
       var breakfastTable = $('#breakfast-table');
       $('.all-food-table').find('#food-row input').click();
       prependCheckedFood('button#add-breakfast', breakfastTable, 400);
     
       assert.include(breakfastTable, '');
+    });
+  });
+
+  context('you can see the date in the date bar', function(){
+    it('displays the current date on index.html', function(){
+      var date = $('.current-day section').text();
+      assert.include(date, '2017');
+      assert.include(date, '03')
     });
   });
 
