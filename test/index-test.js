@@ -61,6 +61,21 @@ describe('#create-form', function() {
   });
 
   context('foods added to meal table will change calorie counts', function(){
+    it('can calculate calories for all meal tables', function(){
+      calculateAllMealCalories();
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var snacks = $('#snack-table #calorie-diff').text();
+        var dinner = $('#dinner-table #calorie-diff').text();
+        var lunch = $('#lunch-table #calorie-diff').text();
+        var breakfast = $('#breakfast-table #calorie-diff').text();
+        assert.equal(breakfast, '400')
+        assert.equal(lunch, '600')
+        assert.equal(snacks, '200')
+        assert.equal(dinner, '800')
+      });
+    });
+
     it('will update total calories if food is added to table', function(){
       var totalCalories = $('#snack-table .food-calories').text();
       assert.equal(totalCalories, '')
@@ -96,6 +111,24 @@ describe('#create-form', function() {
         });
       });
     });
+
+    it('will change grand total calories when foods are added to meal table', function(){
+      calculateAllMealCalories();
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var totalCalories = $('.total-table #goal-total').text();
+        assert.equal(totalCalories, '2000')
+
+        $('#food-row:first input:checkbox').prop('checked', true);
+        $('#add-lunch').click
+
+        $('iframe').attr('src', '../index.html')
+        document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+          var grandTotal = $('.total-table #goal-total').text();
+          assert.equal(leftCalories, '1895')
+        });
+      });
+    })
   });
 
   context('you can see the date in the date bar', function(){
