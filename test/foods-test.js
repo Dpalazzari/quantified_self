@@ -10,10 +10,10 @@ describe('#create-form', function() {
     $('#food-list tbody').html('');
     $('#create-form input').val('');
     $('.validation-error').html('');
+    window.localStorage.clear();
   });
 
   context('validations', function() {
-
     it('will tell me if I fail to enter a name', function() {
       $('#calories-field input').val('105');
       $('#add-food').click();
@@ -49,9 +49,21 @@ describe('#create-form', function() {
       $('#add-food').click();
 
       var foodData = "taco175-"
+      var tableData = $('tbody').text();
+      assert.equal(tableData, foodData);
+    });
 
-      var tableData = $("tbody").text();
-      assert.equal(tableData, foodData)
+    it('will persist added foods across pages', function(){
+      $('#name-field input').val('turkey sandwich');
+      $('#calories-field input').val('185');
+      $('#add-food').click();
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('foods-frame').contentWindow.$(document).ready(function(){
+        var table = $('.all-food-table tbody').text();
+        assert.include(table, 'turkey sandwich')
+        assert.includ(table, '185')
+      });
     });
   });
 
@@ -61,15 +73,14 @@ describe('#create-form', function() {
       $('#name-field input').val('Banana');
       $('#calories-field input').val('105');
       $('#add-food').click();
-      var foodData = "banana105-"
 
+      var foodData = "banana105-"
       var tableData = $("tbody").text();
       assert.equal(tableData, foodData)
 
       $('#delete-food').click();
 
       var tableData = $("tbody").html();
-
       assert.equal(tableData, "");
     });
 
@@ -81,16 +92,13 @@ describe('#create-form', function() {
       $('#calories-field input').val('452');
       $('#add-food').click();
 
-       var foodData = "pineapple452-banana105-"
-      // "<tr id='food-row'><td class='food-name'>Banana</td><td class='food-calories'>105</td><td class='food-delete'><button id='delete-food'>-</button></td></tr>"
-
+      var foodData = "pineapple452-banana105-"
       var tableData = $("tbody").text();
       assert.equal(tableData, foodData)
 
       $('#delete-food').click();
 
       var tableData = $("tbody").text();
-
       assert.equal(tableData, "banana105-");
     });
   });
