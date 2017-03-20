@@ -108,8 +108,8 @@ describe('#create-form', function() {
       $('#name-field input').val('Pizza Slice');
       $('#calories-field input').val('325');
       $('#add-food').click();
-      var foodData = "pizza slice325-"
 
+      var foodData = "pizza slice325-"
       var tableData = $('tbody').text();
       assert.equal(tableData, foodData)
 
@@ -141,6 +141,10 @@ describe('#create-form', function() {
       assert.include(persistedFoods, 'Banana', 'array contains value');
       assert.include(persistedFoods, '452', 'array contains value');
     });
+
+    it('will persist foods from localStorage across page refresh', funcion(){
+      //write this one
+    })
   });
 
   context('foods.js functions', function(){

@@ -5,6 +5,11 @@ describe('#create-form', function() {
     $ = document.getElementById('index-frame').contentWindow.$;
   });
 
+  beforeEach(function(){
+    localStorage.clear();
+    localStorage.setItem('foods', '[{"name": "turkey sandwich", "calories": "185"}, {"name": "taco", "calories": "155"}, {"name": "banana", "calories": "105"}]')
+  })
+
   context('the four meal tables display on the page', function(){
     it('displays all of the meal tables', function(){
       var breakfastTable = $('#breakfast-table')
@@ -20,13 +25,27 @@ describe('#create-form', function() {
   });
 
   context('you can add foods to a meal table', function(){
-    xit('can add checked food to meal table', function(){
-      var foodTable = $('#all-food-table');
-      var breakfastTable = $('#breakfast-table');
-      $('.all-food-table').find('#food-row input').click();
-      prependCheckedFood('button#add-breakfast', breakfastTable, 400);
-    
-      assert.include(breakfastTable, '');
+    it('can add checked food to meal table', function(){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-breakfast').click
+
+      var mealItem = $('#breakfast-table tbody').text();
+      assert.include(mealItem, 'turkey sandwich');
+    });
+
+    it('can add a food to meal table and it persists', function(){
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-breakfast').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#breakfast-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
     });
   });
 
@@ -74,9 +93,9 @@ describe('#create-form', function() {
       var persistedFoods = localStorage.getItem('foods');
 
       assert.isString(persistedFoods, 'localStorage is a string of values');
-      assert.include(persistedFoods, 'Pizza Slice', 'array contains value');
-      assert.include(persistedFoods, 'Banana', 'array contains value');
-      assert.include(persistedFoods, '452', 'array contains value');
+      assert.include(persistedFoods, 'turkey sandwich');
+      assert.include(persistedFoods, 'banana');
+      assert.include(persistedFoods, '185');
     });
   });
 
