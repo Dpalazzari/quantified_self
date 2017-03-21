@@ -27,12 +27,19 @@ describe('#create-form', function() {
   context('you can create a new food from the index page', function(){
     xit('will reroute you to create a new food if button is clicked', function(){
       $('#add-food').click();
+      var htmlPage = document.getElementById('index-frame').contentWindow.$(document)
       assert.include('iframe', '../foods.html')
     });
   });
 
   context('you can add foods to a meal table', function(){
-    it('can add checked food to meal table', function(done){
+    it('can check an item on the food table', function(){
+      $(':checkbox').prop('checked', true);
+      var checked = $(':checked').length;
+      assert.equal(checked, 3)  
+    });
+
+    it('can add checked food to breakfast table', function(done){
       var foodTable = $('.all-food-table #food-row:first').text();
       assert.include(foodTable, 'banana');
 
@@ -47,6 +54,54 @@ describe('#create-form', function() {
       });
       done();
     });
+
+    it('can add checked food to lunch table', function(done){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-lunch').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#lunch-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+      done();
+    })
+
+    it('can add checked food to snack table', function(done){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-snack').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#snack-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+      done()
+    })
+
+    it('can add checked food to dinner table', function(done){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-dinner').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#dinner-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+      done()
+    })
 
     it('can add a food to meal table and it persists', function(){
       $('#food-row input:checkbox').prop('checked', true);
