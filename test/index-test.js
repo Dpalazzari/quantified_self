@@ -32,7 +32,7 @@ describe('#create-form', function() {
   });
 
   context('you can add foods to a meal table', function(){
-    it('can add checked food to meal table', function(){
+    it('can add checked food to meal table', function(done){
       var foodTable = $('.all-food-table #food-row:first').text();
       assert.include(foodTable, 'banana');
 
@@ -45,6 +45,7 @@ describe('#create-form', function() {
         assert.include(mealItem, 'turkey sandwich')
         assert.include(mealItem, 'taco')
       });
+      done();
     });
 
     it('can add a food to meal table and it persists', function(){
