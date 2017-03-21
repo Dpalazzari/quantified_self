@@ -112,6 +112,9 @@ describe('#create-form', function() {
         var mealItem = $('#breakfast-table')
         assert.include(mealItem, 'turkey sandwich')
         assert.include(mealItem, 'taco')
+        reloadPage()
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
       });
     });
   });
@@ -236,3 +239,11 @@ describe('#create-form', function() {
     });
   });
 });
+
+function reloadPage(){
+  for (var i = 0; i < 1; i++) {
+    window.onload=initReload;function initReload() {
+      window.location.reload();
+    }
+  }
+}
