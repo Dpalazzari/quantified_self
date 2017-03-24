@@ -5,6 +5,11 @@ describe('#create-form', function() {
     $ = document.getElementById('index-frame').contentWindow.$;
   });
 
+  beforeEach(function(){
+    localStorage.clear();
+    localStorage.setItem('foods', '[{"name": "turkey sandwich", "calories": "185"}, {"name": "taco", "calories": "155"}, {"name": "banana", "calories": "105"}]')
+  })
+
   context('the four meal tables display on the page', function(){
     it('displays all of the meal tables', function(){
       var breakfastTable = $('#breakfast-table')
@@ -19,15 +24,170 @@ describe('#create-form', function() {
     });
   });
 
-  context('you can add foods to a meal table', function(){
-    xit('can add checked food to meal table', function(){
-      var foodTable = $('#all-food-table');
-      var breakfastTable = $('#breakfast-table');
-      $('.all-food-table').find('#food-row input').click();
-      prependCheckedFood('button#add-breakfast', breakfastTable, 400);
-    
-      assert.include(breakfastTable, '');
+  context('you can create a new food from the index page', function(){
+    xit('will reroute you to create a new food if button is clicked', function(){
+      $('#add-food').click();
+      var htmlPage = document.getElementById('index-frame').contentWindow.$(document)
+      assert.include('iframe', '../foods.html')
     });
+  });
+
+  context('you can add foods to a meal table', function(){
+    it('can check an item on the food table', function(){
+      $(':checkbox').prop('checked', true);
+      var checked = $(':checked').length;
+      assert.equal(checked, 3)  
+    });
+
+    it('can add checked food to breakfast table', function(done){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-breakfast').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#breakfast-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+      done();
+    });
+
+    it('can add checked food to lunch table', function(done){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-lunch').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#lunch-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+      done();
+    })
+
+    it('can add checked food to snack table', function(done){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-snack').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#snack-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+      done()
+    })
+
+    it('can add checked food to dinner table', function(done){
+      var foodTable = $('.all-food-table #food-row:first').text();
+      assert.include(foodTable, 'banana');
+
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-dinner').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#dinner-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+      done()
+    })
+
+    it('can add a food to meal table and it persists', function(){
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-breakfast').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#breakfast-table')
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+        reloadPage()
+        assert.include(mealItem, 'turkey sandwich')
+        assert.include(mealItem, 'taco')
+      });
+    });
+  });
+
+  context('foods added to meal table will change calorie counts', function(){
+    it('can calculate calories for all meal tables', function(){
+      calculateAllMealCalories();
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var snacks = $('#snack-table #calorie-diff').text();
+        var dinner = $('#dinner-table #calorie-diff').text();
+        var lunch = $('#lunch-table #calorie-diff').text();
+        var breakfast = $('#breakfast-table #calorie-diff').text();
+        assert.equal(breakfast, '400')
+        assert.equal(lunch, '600')
+        assert.equal(snacks, '200')
+        assert.equal(dinner, '800')
+      });
+    });
+
+    it('will update total calories if food is added to table', function(){
+      var totalCalories = $('#snack-table .food-calories').text();
+      assert.equal(totalCalories, '')
+
+      $('#food-row:first input:checkbox').prop('checked', true);
+      $('#add-lunch').click
+
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var mealItem = $('#snack-table')
+        assert.include(mealItem, 'banana')
+        var totalCalories = $('#snack-table td.total-calories').text();
+        assert.equal(totalCalories, '105')
+      });
+    });
+
+    it('will update remaining calories in meal once food is added', function(){
+      calculateAllMealCalories();
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var remainingCalories = $('#snack-table #calorie-diff').text();
+        assert.equal(remainingCalories, '200')
+
+        $('#food-row:first input:checkbox').prop('checked', true);
+        $('#add-lunch').click
+
+        $('iframe').attr('src', '../index.html')
+        document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+          var mealItem = $('#snack-table')
+          assert.include(mealItem, 'banana')
+          var leftCalories = $('#snack-table #calorie-diff').text();
+          assert.equal(leftCalories, '95')
+        });
+      });
+    });
+
+    it('will change grand total calories when foods are added to meal table', function(){
+      calculateAllMealCalories();
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var totalCalories = $('.total-table #goal-total').text();
+        assert.equal(totalCalories, '2000')
+
+        $('#food-row:first input:checkbox').prop('checked', true);
+        $('#add-lunch').click
+
+        $('iframe').attr('src', '../index.html')
+        document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+          var grandTotal = $('.total-table #goal-total').text();
+          assert.equal(leftCalories, '1895')
+        });
+      });
+    })
   });
 
   context('you can see the date in the date bar', function(){
@@ -38,34 +198,21 @@ describe('#create-form', function() {
     });
   });
 
-  context('deleting foods from table', function() {
-    xit('with one food, it will delete the food row', function() {
-      $('#name-field input').val('Banana');
-      $('#calories-field input').val('105');
-      $('#add-food').click();
-      var foodData = "banana105-"
+  context('deleting foods from meal table after adding', function() {
+    it('will delete by row once foods are added to a meal table', function() {
+      $('#food-row input:checkbox').prop('checked', true);
+      $('#add-dinner').click
 
-      var tableData = $("tbody").text();
-      assert.equal(tableData, foodData);
-
-      $('#delete-food').click();
-
-      var tableData = $("tbody").html();
-
-      assert.equal(tableData, "");
-    });
-
-    xit('with many foods, it will delete the first food row', function() {
-       var foodData = "pineapple452-banana105-"
-
-      var tableData = $("tbody").text();
-      assert.equal(tableData, foodData);
-
-      $('#delete-food').click();
-
-      var tableData = $("tbody").text();
-
-      assert.equal(tableData, "banana105-");
+      $('#dinner-table tr:first #delete-food').click();
+      $('iframe').attr('src', '../index.html')
+      document.getElementById('index-frame').contentWindow.$(document).ready(function(){
+        var tableData = $('#dinner-table').text();
+        assert.include(tableData, 'turkey sandwich')
+        assert.include(tableData, 'taco')
+        assert.include(tableData, '185')
+        assert.notInclude(tableData, 'banana')
+        assert.notInclude(tableData, '105')
+      });
     });
   });
 
@@ -74,9 +221,9 @@ describe('#create-form', function() {
       var persistedFoods = localStorage.getItem('foods');
 
       assert.isString(persistedFoods, 'localStorage is a string of values');
-      assert.include(persistedFoods, 'Pizza Slice', 'array contains value');
-      assert.include(persistedFoods, 'Banana', 'array contains value');
-      assert.include(persistedFoods, '452', 'array contains value');
+      assert.include(persistedFoods, 'turkey sandwich');
+      assert.include(persistedFoods, 'banana');
+      assert.include(persistedFoods, '185');
     });
   });
 
@@ -92,3 +239,11 @@ describe('#create-form', function() {
     });
   });
 });
+
+function reloadPage(){
+  for (var i = 0; i < 1; i++) {
+    window.onload=initReload;function initReload() {
+      window.location.reload();
+    }
+  }
+}
